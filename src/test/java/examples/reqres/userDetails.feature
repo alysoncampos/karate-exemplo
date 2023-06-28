@@ -14,6 +14,17 @@ Feature: fetching User Details
         Then status 200
         And match $.data.email == "george.bluth@reqres.in"
 
+    Scenario Outline: testing response of a GET endpoint
+        Given path 'users/<id>'
+        When method get
+        Then status 200
+        And match $.data.id == <id>
+        Examples:
+        |id|
+        |1 |
+        |2 |
+        |3 |
+
     Scenario: testing that GET response contais specifics fields
         Given path 'users/1'
         When method get
